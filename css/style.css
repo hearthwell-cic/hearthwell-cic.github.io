@@ -315,32 +315,37 @@ ul { padding-left: 1.2em; }
 }
 @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; } }
 
-/* Placeholder "photo" block — swap for real photography later */
+/* Photo frame — real photography (previously a placeholder block) */
 .photo {
   border-radius: var(--radius);
-  min-height: 260px;
-  display: grid;
-  place-items: center;
-  padding: 2rem;
-  text-align: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow);
+  background: var(--sand);
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.photo--tall img { aspect-ratio: 4 / 3; }
+.photo--wide img { aspect-ratio: 16 / 10; }
+.photo--label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.2rem 1.3rem 0.9rem;
   color: #fff;
-  background:
-    radial-gradient(300px 200px at 20% 0%, rgba(240,168,115,0.5), transparent 60%),
-    linear-gradient(160deg, #1B625A, #144E47);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: linear-gradient(to top, rgba(20, 18, 14, 0.78), transparent);
+  margin: 0;
 }
-.photo--ember {
-  background:
-    radial-gradient(300px 200px at 85% 10%, rgba(255,255,255,0.25), transparent 60%),
-    linear-gradient(160deg, #C2602F, #8C3D17);
-}
-.photo--cream { background: linear-gradient(160deg, #F2E9DC, #E2D3BE); color: var(--teal-700); }
-.photo__label {
-  font-family: var(--font-head);
-  font-size: 1.1rem;
-  font-style: italic;
-  opacity: 0.9;
-  max-width: 28ch;
-}
+@media (max-width: 480px) { .photo--label { display: none; } }
 
 /* ---------- Values ---------- */
 .values-grid { display: grid; gap: 1.3rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
